@@ -18,11 +18,11 @@ import Logo from './Logo.vue';
 </template>
 
 <style scoped lang="scss">
+@use'../../style/partial/_variables.scss' as *;
 
     #header{
         height: 70px;
         display: flex;
         align-items: center;
-        border: 1px solid black;
     }
 </style>
