@@ -9,6 +9,7 @@ import {store} from '../store.js';
                 store,
             };
         },
+        // chimata axos per prendere dati da api
         created(){
             axios.get(store.apiUrl).then((response)=>{
                 store.cards = response.data.results;
