@@ -29,7 +29,9 @@ import SpeciesList from './SpeciesList.vue';
 <template>
     <main id="main">
         <SpeciesList/>
-        <CardsContainer/>
+        <div class="main-container">
+            <CardsContainer/>
+        </div>
     </main>
 </template>
 
@@ -38,5 +40,11 @@ import SpeciesList from './SpeciesList.vue';
 
     #main{
         background-color: $bg-orange-main;
+        .main-container{
+        background-color: $col-white;
+        width: 85%;
+        padding: 48px;
+        margin: 0 auto;
+        }
     }
 </style>
