@@ -38,6 +38,5 @@ import SpeciesList from './SpeciesList.vue';
 
     #main{
         background-color: $bg-orange-main;
-        height: 100vh;
     }
 </style>
