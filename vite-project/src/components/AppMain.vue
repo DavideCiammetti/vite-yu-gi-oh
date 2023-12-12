@@ -1,17 +1,17 @@
 <script>
 import axios from 'axios';
+import {store} from '../store.js';
 
      export default{
-        name: 'header',
+        name: 'main',
             data(){
             return{
-                'cards': [],
-                'apiUrl': 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+                store,
             };
         },
         created(){
-            axios.get(this.apiUrl).then((response)=>{
-                this.cards = response.data.results;
+            axios.get(store.apiUrl).then((response)=>{
+                store.cards = response.data.results;
             });
         },
     };
