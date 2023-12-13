@@ -30,7 +30,7 @@ export default{
         }
         .info-text{
             text-align: center;
-            padding: 30px 0;
+            padding-top: 30px;
             h4{
                 color: white;
                 margin-bottom: 30px;
