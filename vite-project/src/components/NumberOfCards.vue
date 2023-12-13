@@ -1,15 +1,21 @@
 <script>
-
-export default{
-    name: 'cardsFound',
-}
+    import { store } from '../store';
+    export default{
+        name: 'cardsFound',
+        
+        data(){
+            return{
+                store,
+            };
+        },
+    }
 
 </script>
 
 <template>
     <div class="cards-found-container">
         <div class="found-content"> 
-            <h3>Found 39 cards</h3>
+            <h3>Found {{ this.store.itemCard.length }} cards</h3>
         </div>
     </div>
 </template>

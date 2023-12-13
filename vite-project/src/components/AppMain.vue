@@ -1,37 +1,40 @@
 <script>
 import axios from 'axios';
-import {store} from '../store.js';
-import CardsContainer from './CardsContainer.vue';
+import { store } from '../store';
 import SpeciesList from './SpeciesList.vue';
+import CardsContainer from './CardsContainer.vue';
 
-     export default{
-        name: 'main',
-            components:{
-                CardsContainer,
-                SpeciesList,
-            },
+export default{
+    name: 'main',
+    components:{
+        CardsContainer,
+        SpeciesList,
+    },
 
-            data(){
-            return{
-                store,
-            };
-        },
-        // chimata axos per prendere dati da api
-        created(){
-            axios.get(store.apiUrl).then((response)=>{
-                store.cards = response.data.results;
-            });
-        },
-    };
+    data(){
+        return{
+            store,
+        };
+    },
+// chimata axios 
+    created(){
+        axios.get(this.store.apiURL).then((response)=>{
+            this.store.itemCard = response.data.data;
+            console.log(this.store.itemCard);
+        });
+    },
+};
    
 </script>
 
 <template>
     <main id="main">
         <SpeciesList/>
-        <div class="main-container">
-            <CardsContainer/>
-        </div>
+
+        <CardsContainer 
+        :itemCard = "this.store.itemCard"
+        
+        />
     </main>
 </template>
 
@@ -40,11 +43,5 @@ import SpeciesList from './SpeciesList.vue';
 
     #main{
         background-color: $bg-orange-main;
-        .main-container{
-        background-color: $col-white;
-        width: 85%;
-        padding: 48px;
-        margin: 0 auto;
-        }
     }
 </style>

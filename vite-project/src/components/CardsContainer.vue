@@ -1,105 +1,52 @@
 <script>
+import { store } from '../store';
 import NumberOfCards from './NumberOfCards.vue';
+import Cards from './Cards.vue';
 export default{
     name: 'cardsContainer',
+
         components:{
             NumberOfCards,
-        }
+            Cards,
+        },
+
+        data(){
+           return{
+            store,
+           };
+        },
 }
 
 </script>
 
 <template>
-    <NumberOfCards/>
-    <div class="cards-container">
-        <div class="card">
-            <div class="card-img">
-                immagine
-            </div>
-            <div class="info-text">
-                <h4><strong>title</strong></h4>
-                <p>par</p>
-            </div>
+    <div class="main-container">
+        <NumberOfCards :found="this.store.itemCard"/>
+        <div class="cards-container">
+            <Cards 
+            v-for="cards in this.store.itemCard"
+            :img="cards.card_images[0].image_url"
+            :name="cards.name"
+            :type="cards.archetype"
+            />
         </div>
-        <div class="card">
-            2
-        </div>
-        <div class="card">
-            3
-        </div>
-        <div class="card">
-            4
-        </div>
-        <div class="card">
-            5
-        </div>
-
-        <div class="card">
-            1
-        </div>
-        <div class="card">
-            2
-        </div>
-        <div class="card">
-            3
-        </div>
-        <div class="card">
-            4
-        </div>
-        <div class="card">
-            5
-        </div>
-
-        <div class="card">
-            1
-        </div>
-        <div class="card">
-            2
-        </div>
-        <div class="card">
-            3
-        </div>
-        <div class="card">
-            4
-        </div>
-        <div class="card">
-            5
-        </div>
-
-        <div class="card">
-            1
-        </div>
-        <div class="card">
-            2
-        </div>
-        <div class="card">
-            3
-        </div>
-        <div class="card">
-            4
-        </div>
-        <div class="card">
-            5
-        </div>
-
     </div>
 </template>
 
 <style scoped lang="scss">
 @use'../../style/partial/_variables.scss' as *;
-  
-.cards-container{
-    height: 90%;
-    border: 1px solid black;
+.main-container{
+    background-color: $col-white;
+    width: 85%;
+    padding: 48px;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-        .card{
-            width: calc((100% / 5) - 20px);
-            border: 1px solid black;
-            height: 150px;
+        .cards-container{
+            height: 90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
         }
-}
+    }
 </style>
