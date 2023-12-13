@@ -1,16 +1,22 @@
 <script>
+import { store } from '../store';
 
 export default{
     name: 'specis',
+
+    data(){
+           return{
+            store,
+           };
+        },
 }
 
 </script>
 
 <template>
     <div class="species-list-container">
-        <select name="specie" id="cars" class="specie">
-            <option value="Alien">Alien</option>
-            <option value="uman">Uman</option>
+        <select name="specie" id="cars" class="specie" @click="$emit('search')" v-model="store.searchWord">
+            <option v-for="types in this.store.type" :value="types.archetype_name"> {{types.archetype_name}}</option>
         </select>
     </div>
 </template>

@@ -16,12 +16,23 @@ export default{
             store,
         };
     },
+    methods:{
+    
+        newSearch(){
+            axios.get(this.store.apiURL + '?archetype=' + this.store.searchWord).then((response)=>{
+                this.store.itemCard = response.data.data;
+            });
+
+        axios.get(this.store.archetypeUrl).then((response)=>{
+            this.store.type = response.data;
+            console.log('sono search ' + this.store.searchWord);
+        });
+        }
+
+    },
 // chimata axios 
     created(){
-        axios.get(this.store.apiURL).then((response)=>{
-            this.store.itemCard = response.data.data;
-            console.log(this.store.itemCard);
-        });
+        this.newSearch();
     },
 };
    
@@ -29,11 +40,13 @@ export default{
 
 <template>
     <main id="main">
-        <SpeciesList/>
+        <!-- ricerca carte per tipo -->
+        <SpeciesList @search=" newSearch"/>
 
+        <!-- struttura a 2 main per ilclusione delle singole carte che avviene nel file //CardsContainer// -->
         <CardsContainer 
         :itemCard = "this.store.itemCard"
-        
+
         />
     </main>
 </template>
