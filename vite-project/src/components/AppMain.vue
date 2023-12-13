@@ -19,20 +19,26 @@ export default{
     methods:{
     
         newSearch(){
-            axios.get(this.store.apiURL + '?archetype=' + this.store.searchWord).then((response)=>{
+            axios.get(this.store.apiURL + '&archetype=' + this.store.searchWord).then((response)=>{
                 this.store.itemCard = response.data.data;
             });
 
         axios.get(this.store.archetypeUrl).then((response)=>{
             this.store.type = response.data;
-            console.log('sono search ' + this.store.searchWord);
         });
+        },
+        allReset(){
+            axios.get(this.store.apiURL).then((response)=>{
+                this.store.itemCard = response.data.data;
+            });
+            this.store.searchWord = '';
         }
 
     },
 // chimata axios 
     created(){
         this.newSearch();
+        this.allReset()
     },
 };
    
@@ -41,7 +47,7 @@ export default{
 <template>
     <main id="main">
         <!-- ricerca carte per tipo -->
-        <SpeciesList @search=" newSearch"/>
+        <SpeciesList @search="newSearch" @reset="allReset"/>
 
         <!-- struttura a 2 main per ilclusione delle singole carte che avviene nel file //CardsContainer// -->
         <CardsContainer 
