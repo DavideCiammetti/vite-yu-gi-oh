@@ -6,4 +6,6 @@ export const store = reactive({
     archetypeUrl:'https://db.ygoprodeck.com/api/v7/archetypes.php',
     type: [],
     searchWord: '',
+    newApiURL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+    totalOfTheCardsNumber: 0,
 });

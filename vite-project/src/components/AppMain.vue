@@ -19,26 +19,38 @@ export default{
     methods:{
     
         newSearch(){
-            axios.get(this.store.apiURL + '&archetype=' + this.store.searchWord).then((response)=>{
+            // chiamata api generale
+            axios.get(this.store.apiURL + '?archetype=' + this.store.searchWord).then((response)=>{
                 this.store.itemCard = response.data.data;
             });
-
+            // chiamata api lista archetype
         axios.get(this.store.archetypeUrl).then((response)=>{
             this.store.type = response.data;
         });
         },
+
+        // funzione reset dopo ricerca 
         allReset(){
             axios.get(this.store.apiURL).then((response)=>{
                 this.store.itemCard = response.data.data;
             });
             this.store.searchWord = '';
+        },
+
+        totalComponents(){
+            axios.get(this.store.newApiURL + '?archetype=' + this.store.searchWord).then((response)=>{
+                this.store.totolaCards = response.data.data;
+                this.store.totalOfTheCardsNumber =  this.store.totolaCards.length;
+                console.log('tot ' +  this.store.totalOfTheCardsNumber);
+            });
         }
 
     },
 // chimata axios 
     created(){
         this.newSearch();
-        this.allReset()
+        this.allReset();
+        this.totalComponents();
     },
 };
    
@@ -47,7 +59,7 @@ export default{
 <template>
     <main id="main">
         <!-- ricerca carte per tipo -->
-        <SpeciesList @search="newSearch" @reset="allReset"/>
+        <SpeciesList @search="newSearch" @reset="allReset" @totalSearch="totalComponents"/>
 
         <!-- struttura a 2 main per ilclusione delle singole carte che avviene nel file //CardsContainer// -->
         <CardsContainer 

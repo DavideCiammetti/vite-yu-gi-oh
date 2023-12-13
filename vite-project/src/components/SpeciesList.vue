@@ -14,12 +14,15 @@ export default{
 </script>
 
 <template>
-    <div class="species-list-container">
+    <div class="species-list-container" @click="$emit('totalSearch')">
         <select name="specie" id="cars" class="specie" @click="$emit('search')" v-model="store.searchWord">
             <option v-for="types in this.store.type" :value="types.archetype_name"> {{types.archetype_name}}</option>
         </select>
         <div class="button"  @click="$emit('reset')">
             <button>reset</button>
+        </div>
+        <div class="number-Total-Cards">
+            <h5>il numero delle carte cercate è: {{  this.store.totalOfTheCardsNumber }}</h5>
         </div>
     </div>
 </template>
@@ -48,6 +51,14 @@ export default{
             margin-left: 10px;
                 button{
                     padding: 10px;
+                }
+        }
+        .number-Total-Cards{
+            border: 1px solid rgb(137, 137, 137);
+            background-color: rgb(124, 81, 0);
+                h5{
+                    padding: 10px;
+                    color: rgb(242, 242, 242);
                 }
         }
 }
