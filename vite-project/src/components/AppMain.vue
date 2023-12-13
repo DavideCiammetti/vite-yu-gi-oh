@@ -36,7 +36,7 @@ export default{
             });
             this.store.searchWord = '';
         },
-
+        // funzione che restituisce il totale delle carte cercate perchè l'api che usiamo prende solo i primi 20 elementi 
         totalComponents(){
             axios.get(this.store.newApiURL + '?archetype=' + this.store.searchWord).then((response)=>{
                 this.store.totolaCards = response.data.data;
