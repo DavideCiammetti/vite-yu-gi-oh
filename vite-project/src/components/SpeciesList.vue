@@ -56,6 +56,7 @@ export default{
         .number-Total-Cards{
             border: 1px solid rgb(137, 137, 137);
             background-color: rgb(124, 81, 0);
+            margin-left: 25px;
                 h5{
                     padding: 10px;
                     color: rgb(242, 242, 242);
